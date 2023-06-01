@@ -61,13 +61,13 @@ class HHGetVacansies(AbstractAPI):
 
         self.get_vacansies()
         filtred_vacansies = []
-        for vac in self.vacansies:
-            if self.vacansy in vac['name'].lower():
-                if vac.get('salary') is not None:
+        for v in self.vacansies:
+            if self.vacansy in v['name'].lower():
+                if v.get('salary') is not None:
                     salary = {'salary': True,
-                              'salary_from': vac['salary']['from'],
-                              'salary_to': vac['salary']['to'],
-                              'currency': vac['salary']['currency']
+                              'salary_from': v['salary']['from'],
+                              'salary_to': v['salary']['to'],
+                              'currency': v['salary']['currency']
                               }
                 else:
                     salary = {'salary': False,
@@ -75,13 +75,13 @@ class HHGetVacansies(AbstractAPI):
                               'salary_to': None,
                               'currency': None
                               }
-                vacansy_params = {'id': vac['id'],
-                                  'title': vac['name'],
-                                  'employer': vac['employer']['name'],
-                                  'url': vac['alternate_url'],
-                                  'area': vac['area']['name'],
-                                  'experience': vac['experience']['name'],
-                                  'employment': vac['employment']['name'],
+                vacansy_params = {'id': v['id'],
+                                  'title': v['name'],
+                                  'employer': v['employer']['name'],
+                                  'url': v['alternate_url'],
+                                  'area': v['area']['name'],
+                                  'experience': v['experience']['name'],
+                                  'employment': v['employment']['name'],
                                   'portal': 'HeadHunter'
                                   }
                 vacansy_params.update(salary)
@@ -126,23 +126,23 @@ class SJGetVacansies(HHGetVacansies):
 
         self.get_vacansies()
         filtred_vacansies = []
-        for vac in self.vacansies:
-            if self.vacansy in vac['profession'].lower():
-                if vac['payment_from'] == 0 and vac['payment_to'] == 0:
+        for v in self.vacansies:
+            if self.vacansy in v['profession'].lower():
+                if v['payment_from'] == 0 and v['payment_to'] == 0:
                     salary = {'salary': False}
                 else:
                     salary = {'salary': True}
 
-                vacansy_params = {'id': vac['id'],
-                                  'title': vac['profession'],
-                                  'employer': vac['firm_name'],
-                                  'url': vac['link'],
-                                  'area': vac['town']['title'],
-                                  'experience': vac['experience']['title'],
-                                  'employment': vac['type_of_work']['title'],
-                                  'salary_from': vac['payment_from'],
-                                  'salary_to': vac['payment_to'],
-                                  'currency': vac['currency'],
+                vacansy_params = {'id': v['id'],
+                                  'title': v['profession'],
+                                  'employer': v['firm_name'],
+                                  'url': v['link'],
+                                  'area': v['town']['title'],
+                                  'experience': v['experience']['title'],
+                                  'employment': v['type_of_work']['title'],
+                                  'salary_from': v['payment_from'],
+                                  'salary_to': v['payment_to'],
+                                  'currency': v['currency'],
                                   'portal': 'SuperJob'
                                   }
                 vacansy_params.update(salary)
