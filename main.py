@@ -70,11 +70,13 @@ def main():
     if choise_filtred == '1':
         filter_field = 'area'
         filter_value = input('Введите название города: ').lower()
-        vacansies = fh.sorted_vacansies(filter_field, filter_value)
+        filter_value_1 = filter_value
+        vacansies = fh.sorted_vacansies(filter_field, filter_value, filter_value_1)
     elif choise_filtred == '2':
         filter_field = 'employer'
         filter_value = input('Введите название работодателя: ').lower()
-        vacansies = fh.sorted_vacansies(filter_field, filter_value)
+        filter_value_1 = filter_value
+        vacansies = fh.sorted_vacansies(filter_field, filter_value, filter_value_1)
     elif choise_filtred == '3':
         filter_field = 'experience'
         userinput = input('Введите желаемый уровень опыта: \n'

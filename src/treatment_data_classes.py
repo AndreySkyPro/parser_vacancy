@@ -25,7 +25,7 @@ class JsonFile(AbstractJson):
 
         return data
 
-    def sorted_vacansies(self, filter_field, filter_value, filter_value_1=None):
+    def sorted_vacansies(self, filter_field, filter_value: str, filter_value_1=None):
         """Фильтрация списка вакансий"""
 
         data = self.load_jfile()

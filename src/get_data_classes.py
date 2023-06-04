@@ -41,7 +41,7 @@ class HHGetVacansies(AbstractAPI):
         if response.status_code == 200:
             return response.json()[self.get_first_key]
 
-    def get_vacansies(self, count_page=10):
+    def get_vacansies(self, count_page=30):
         """Получение списка вакансий по предустановленному количеству страниц
         Возвращает: список с вакансиями"""
         while self.__param['page'] < count_page:
