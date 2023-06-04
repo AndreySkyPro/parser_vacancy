@@ -11,17 +11,13 @@ class AbstractAPI(ABC):
     def get_vacansies(self):
         pass
 
-    @abstractmethod
-    def validate_vacansies(self):
-        pass
-
 
 class AbstractJson(ABC):
 
     @abstractmethod
-    def create_file(self):
+    def create_jfile(self):
         pass
 
     @abstractmethod
-    def load_file(self):
+    def load_jfile(self):
         pass

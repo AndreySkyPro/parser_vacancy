@@ -9,7 +9,7 @@ class JsonFile(AbstractJson):
     def __init__(self, vacansy, all_vacansies):
         self.__filename = f'{vacansy.title()}.json'
         self.all_vacansies = all_vacansies
-        self.create_file()
+        self.create_jfile()
 
     def create_jfile(self):
         """Создание файла со списком вакансий"""
@@ -25,9 +25,31 @@ class JsonFile(AbstractJson):
 
         return data
 
+    def sorted_vacansies(self, filter_field, filter_value, filter_value_1=None):
+        """Фильтрация списка вакансий"""
+
+        data = self.load_jfile()
+        vacansies = [Vacansy(x['title'], x['employer'], x['url'], x['area'], x['experience'], x['employment'],
+                             x['salary'], x['salary_from'], x['salary_to'], x['currency'], x['portal'])
+                     for x in data
+                     if filter_value in x[filter_field].lower() or filter_value_1 in x[filter_field].lower()
+                     ]
+        return vacansies
+
+    def not_sorted_vacansies(self):
+        """Фильтрация не включена в список вакансий"""
+
+        data = self.load_jfile()
+        vacansies = [Vacansy(x['title'], x['employer'], x['url'], x['area'], x['experience'], x['employment'],
+                             x['salary'], x['salary_from'], x['salary_to'], x['currency'], x['portal'])
+                     for x in data]
+        return vacansies
+
 
 class Vacansy:
     """Инициалзация класса Вакансия по полученным параметрам"""
+    __slots__ = ("title", "employer", "url", "area", "experience", "employment", "salary",
+                 "salary_from", "salary_to", "currency", "portal")
     def __init__(self, title, employer, url, area, experience, employment, salary,
                  salary_from, salary_to, currency, portal):
         self.title = title
